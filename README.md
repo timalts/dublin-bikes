@@ -1,2 +1,14 @@
-# dublin-bikes
-Project for the OOP course at Dorset College w/ 3 others students.
+# Foobar
+
+Dublin-bikes is a C# project for our OOP course at Dorset College
+## Installation
+
+There is currently no release for this project 
+## Usage
+
+There is currently no release for this project 
+
+## Contributing
+Link 1
+Link 2
+Link 3
