@@ -1,4 +1,4 @@
-# Foobar
+# Dublin-bikes
 
 Dublin-bikes is a C# project for our OOP course at Dorset College
 ## Installation
