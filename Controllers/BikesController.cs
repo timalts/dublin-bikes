@@ -57,9 +57,7 @@ namespace dublin_bikes.Controllers
 
             // executes now
 
-            // return View(await movies.ToListAsync());
-
-            return View(movieGenreVM);
+            return View(await movies.ToListAsync());
         }
 
         //[HttpPost]
