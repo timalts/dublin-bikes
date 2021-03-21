@@ -9,6 +9,6 @@ There is currently no release for this project
 There is currently no release for this project 
 
 ## Contributing
-Link 1
+Emeric du Gardin
 Link 2
 Link 3
