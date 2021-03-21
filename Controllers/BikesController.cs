@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using dublin_bikes.Data;
+using dublin_bikes.Models;
 
 namespace dublin_bikes.Controllers
 {
@@ -21,32 +22,33 @@ namespace dublin_bikes.Controllers
         // GET: Movies
         public async Task<IActionResult> Index(string movieGenre, string searchString)
         {
-            IQueryable<string> genreQuery = from m in _context.Movie
+            /*
+            IQueryable<string> genreQuery = from m in _context.Bikes
                                             orderby m.Genre
-                                            select m.Genre;
+                                            select m.Genre;*/
 
 
             // This defers the query - postpones the query
 
-            var movies = from currentMovieItem in _context.Movie select currentMovieItem; // does not execute at this point
+            var movies = from currentMovieItem in _context.Bikes select currentMovieItem; // does not execute at this point
 
-
+            /*
             if (!String.IsNullOrEmpty(searchString))
             {
                 movies = movies.Where(s => s.Title.Contains(searchString)); // still deferred, but query updated
-            }
+            }*/
 
-            if (!String.IsNullOrEmpty(movieGenre))
+            /*if (!String.IsNullOrEmpty(movieGenre))
             {
                 movies = movies.Where(s => s.Genre.Contains(movieGenre)); // still deferred, but query updated
-            }
+            }*/
 
-            var movieGenreVM = new MovieGenreViewModel
+            /*var movieGenreVM = new MovieGenreViewModel
             {
                 Genres = new SelectList(await genreQuery.Distinct().ToListAsync()),
                 Movies = await movies.ToListAsync()
 
-            };
+            };*/
 
             //var movieListWithSearch = _context.Movie.Where(x => x.Title.Contains(searchString));
 
@@ -58,7 +60,6 @@ namespace dublin_bikes.Controllers
             // return View(await movies.ToListAsync());
 
             return View(movieGenreVM);
-
         }
 
         //[HttpPost]
@@ -78,7 +79,7 @@ namespace dublin_bikes.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movie
+            var movie = await _context.Bikes
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (movie == null)
             {
@@ -99,7 +100,7 @@ namespace dublin_bikes.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Movie movie)
+        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Bikes movie)
         {
             if (ModelState.IsValid)
             {
@@ -118,7 +119,7 @@ namespace dublin_bikes.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movie.FindAsync(id);
+            var movie = await _context.Bikes.FindAsync(id);
             if (movie == null)
             {
                 return NotFound();
@@ -131,7 +132,7 @@ namespace dublin_bikes.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Bikes movie)
         {
             if (id != movie.Id)
             {
@@ -169,7 +170,7 @@ namespace dublin_bikes.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movie
+            var movie = await _context.Bikes
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (movie == null)
             {
@@ -184,15 +185,15 @@ namespace dublin_bikes.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var movie = await _context.Movie.FindAsync(id);
-            _context.Movie.Remove(movie);
+            var movie = await _context.Bikes.FindAsync(id);
+            _context.Bikes.Remove(movie);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool MovieExists(int id)
         {
-            return _context.Movie.Any(e => e.Id == id);
+            return _context.Bikes.Any(e => e.Id == id);
         }
     }
 }

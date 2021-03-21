@@ -3,12 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using dublin_bikes.Models;
 
 namespace dublin_bikes.Data
 {
-    public class MvcBikesController : DbContext
+    public class MvcBikesContext : DbContext
     {
-        public MvcBikesController(DbContextOptions<MvcBikesController> options) : base(options)
+        public MvcBikesContext(DbContextOptions<MvcBikesContext> options) : base(options)
         {
 
         }
