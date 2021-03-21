@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using dublin_bikes.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace dublin_bikes
 {
@@ -24,6 +26,9 @@ namespace dublin_bikes
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<MvcBikesContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("MvcBikeContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
