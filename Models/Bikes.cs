@@ -5,15 +5,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MovieListings.Models
+namespace dublin_bikes.Models
 {
-    public class Movie
+    public class Bikes
     {
 
         public int Id { get; set; }
 
         [Required]
-        public int number {get;set; }
+        public int Number {get;set; }
 
         [Required]
         [StringLength(60, MinimumLength = 3)]
@@ -21,7 +21,7 @@ namespace MovieListings.Models
 
         [Required]
         [StringLength(60, MinimumLength = 3)]
-        public string Adress { get; set; }
+        public string Address { get; set; }
 
         [Required]
         public float Latitude {get; set; }
