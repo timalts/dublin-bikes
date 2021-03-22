@@ -19,57 +19,22 @@ namespace dublin_bikes.Controllers
             _context = context;
         }
 
-        // GET: Movies
-        public async Task<IActionResult> Index(string movieGenre, string searchString)
+        public async Task<IActionResult> Index(string bike, string searchString)
         {
-            /*
-            IQueryable<string> genreQuery = from m in _context.Bikes
-                                            orderby m.Genre
-                                            select m.Genre;*/
+            // to-do (missing code)
 
 
             // This defers the query - postpones the query
 
-            var movies = from currentMovieItem in _context.Bikes select currentMovieItem; // does not execute at this point
-
-            /*
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                movies = movies.Where(s => s.Title.Contains(searchString)); // still deferred, but query updated
-            }*/
-
-            /*if (!String.IsNullOrEmpty(movieGenre))
-            {
-                movies = movies.Where(s => s.Genre.Contains(movieGenre)); // still deferred, but query updated
-            }*/
-
-            /*var movieGenreVM = new MovieGenreViewModel
-            {
-                Genres = new SelectList(await genreQuery.Distinct().ToListAsync()),
-                Movies = await movies.ToListAsync()
-
-            };*/
-
-            //var movieListWithSearch = _context.Movie.Where(x => x.Title.Contains(searchString));
-
-            //  var movieListNoSearch = _context.Movie;
-
+            var bikes = from currentBikeItem in _context.Bikes select currentBikeItem; // does not execute at this point
+            // to-do (missing code)
 
             // executes now
 
-            return View(await movies.ToListAsync());
+            return View(await bikes.ToListAsync());
         }
 
-        //[HttpPost]
-        //public string Index(string searchString, bool notUsed)
-        //{
-        //    return "From HTTP Post : filter on " + searchString;
 
-        //}
-
-
-
-        // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -77,39 +42,34 @@ namespace dublin_bikes.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Bikes
+            var bike = await _context.Bikes
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (movie == null)
+            if (bike == null)
             {
                 return NotFound();
             }
 
-            return View(movie);
+            return View(bike);
         }
 
-        // GET: Movies/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Movies/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Bikes movie)
+        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Bikes bike)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(movie);
+                _context.Add(bike);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(movie);
+            return View(bike);
         }
 
-        // GET: Movies/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -117,22 +77,19 @@ namespace dublin_bikes.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Bikes.FindAsync(id);
-            if (movie == null)
+            var bike = await _context.Bikes.FindAsync(id);
+            if (bike == null)
             {
                 return NotFound();
             }
-            return View(movie);
+            return View(bike);
         }
 
-        // POST: Movies/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Bikes movie)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Bikes bike)
         {
-            if (id != movie.Id)
+            if (id != bike.Id)
             {
                 return NotFound();
             }
@@ -141,12 +98,12 @@ namespace dublin_bikes.Controllers
             {
                 try
                 {
-                    _context.Update(movie);
+                    _context.Update(bike);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MovieExists(movie.Id))
+                    if (!bikeExists(bike.Id))
                     {
                         return NotFound();
                     }
@@ -157,10 +114,8 @@ namespace dublin_bikes.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(movie);
+            return View(bike);
         }
-
-        // GET: Movies/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -168,28 +123,27 @@ namespace dublin_bikes.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Bikes
+            var bike = await _context.Bikes
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (movie == null)
+            if (bike == null)
             {
                 return NotFound();
             }
 
-            return View(movie);
+            return View(bike);
         }
 
-        // POST: Movies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var movie = await _context.Bikes.FindAsync(id);
-            _context.Bikes.Remove(movie);
+            var bike = await _context.Bikes.FindAsync(id);
+            _context.Bikes.Remove(bike);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MovieExists(int id)
+        private bool bikeExists(int id)
         {
             return _context.Bikes.Any(e => e.Id == id);
         }
