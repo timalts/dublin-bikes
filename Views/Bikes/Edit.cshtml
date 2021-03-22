@@ -1,4 +1,4 @@
-﻿@model test.Models.Bikes
+﻿@model dublin_bikes.Models.Bikes
 
 @{
     ViewData["Title"] = "Edit";
@@ -37,6 +37,31 @@
                 <label asp-for="Longitude" class="control-label"></label>
                 <input asp-for="Longitude" class="form-control" />
                 <span asp-validation-for="Longitude" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Banking" /> @Html.DisplayNameFor(model => model.Banking)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Available_bikes" class="control-label"></label>
+                <input asp-for="Available_bikes" class="form-control" />
+                <span asp-validation-for="Available_bikes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Avaible_stand" class="control-label"></label>
+                <input asp-for="Avaible_stand" class="form-control" />
+                <span asp-validation-for="Avaible_stand" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Capacity" class="control-label"></label>
+                <input asp-for="Capacity" class="form-control" />
+                <span asp-validation-for="Capacity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
