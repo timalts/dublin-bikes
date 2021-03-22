@@ -28,5 +28,21 @@ namespace dublin_bikes.Models
 
         [Required]
         public float Longitude {get; set; }
+
+        [Required]
+        public bool Banking { get; set; }
+
+        [Required]
+        public int Available_bikes { get; set; }
+
+        [Required]
+        public int Avaible_stand { get; set; }
+
+        [Required]
+        public int Capacity { get; set; }
+
+        [Required]
+        [StringLength(60, MinimumLength = 3)]
+        public string Status { get; set; }
     }
 }
