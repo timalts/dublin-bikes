@@ -3,12 +3,9 @@
 Dublin-bikes is a C# project for our OOP course at Dorset College
 ## Installation
 
-There is currently no release for this project 
-## Usage
-
-There is currently no release for this project 
+This project is a Visual Studio solution 
 
 ## Contributing
+Pierre-Louis Garnerone
+Nathan Ave
 Emeric du Gardin
-Link 2
-Link 3
