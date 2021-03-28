@@ -62,7 +62,7 @@ namespace dublin_bikes.Models
                         Available_bikes = 18,
                         Avaible_stand = 12,
                         Capacity = 30,
-                        Status = "open"
+                        Status = "close"
                     }
                 );
                 context.SaveChanges();
