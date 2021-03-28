@@ -55,7 +55,7 @@ namespace dublin_bikes
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Bikes}/{action=Index}/{id?}");
             });
         }
     }
