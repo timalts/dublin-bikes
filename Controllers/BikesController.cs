@@ -20,9 +20,17 @@ namespace dublin_bikes.Controllers
         }
 
         // GET: Bikes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string SearchString)
         {
-            return View(await _context.Bikes.ToListAsync());
+            var bikes = from b in _context.Bikes
+                         select b;
+
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                bikes = bikes.Where(s => s.Address.Contains(SearchString));
+            }
+
+            return View(await bikes.ToListAsync());
         }
 
         // GET: Bikes/Details/5
@@ -54,7 +62,7 @@ namespace dublin_bikes.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Number,Name,Address,Latitude,Longitude")] Bikes bikes)
+        public async Task<IActionResult> Create([Bind("Id,Number,Name,Address,Latitude,Longitude,Banking,Available_bikes,Available_stand,Capacity,Status")] Bikes bikes)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +94,7 @@ namespace dublin_bikes.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Number,Name,Address,Latitude,Longitude")] Bikes bikes)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Number,Name,Address,Latitude,Longitude,Banking,Available_bikes,Available_stand,Capacity,Status")] Bikes bikes)
         {
             if (id != bikes.Id)
             {
