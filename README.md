@@ -7,6 +7,7 @@ This project is a Visual Studio solution
 To install the Db, open package manager and run __*Update_Database*__  
 
 ## Contributing
-Pierre-Louis Garnerone
-Nathan Ave
-Emeric du Gardin
+Pierre-Louis Garnerone  
+Nathan Ave  
+Emeric du Gardin  
+Timothé Noël
